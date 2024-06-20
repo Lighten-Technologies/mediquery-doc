@@ -1,0 +1,9 @@
+# <%= moduleInfo.name %>
+
+<%= moduleInfo.description %>
+
+## Versions
+
+<% versionList.forEach(function(version) { %>
+- [<%= version %>](./<%= version %>/index.md)
+<% }); %>

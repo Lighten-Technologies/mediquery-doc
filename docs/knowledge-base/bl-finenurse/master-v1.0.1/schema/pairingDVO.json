@@ -1,0 +1,12 @@
+{
+  "serial": "string",
+  "dropInterval": 0,
+  "dropCount": 0,
+  "battery": 0,
+  "packetCount": 0,
+  "sunlightCount": 0,
+  "freeFlowCount": 0,
+  "status": 0,
+  "version": "string",
+  "timestamp": "string"
+}

@@ -1,0 +1,8 @@
+schema:
+  - deviceDVO.json
+  - pairingDVO.json
+path:
+  - GET /api/lighten/finedrop2/v1/devices
+  - POST /api/lighten/finedrop2/v1/devices
+  - PUT /api/lighten/finedrop2/v1/devices
+  - GET /users/{id}
