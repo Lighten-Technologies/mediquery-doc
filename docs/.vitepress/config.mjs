@@ -29,15 +29,24 @@ export default defineConfig({
       {
         text: "bl-finedrop2",
         module: "bl-finedrop2",
+        // link: "/api-doc/bl-finedrop2",
         versionList: ["master-v1.0.0", "master-v1.0.1", "samsung-v1.0.0", "samsung-v1.0.1"],
         items: [
+          {
+            module: "bl-finedrop2",
+            version: "master-v1.0.0",
+            method: [],
+            todo: false,
+            text: "master-v1.0.0",
+            link: "/api-doc/bl-finedrop2/master-v1.0.0",
+          },
           {
             module: "bl-finedrop2",
             version: "master-v1.0.0",
             method: ["GET", "POST", "PUT", "DELETE"],
             todo: true,
             text: "/api/lighten/finedrop2/v1/devices",
-            link: "/markdown-examples/example1",
+            link: "/api-doc/bl-finedrop2/master-v1.0.0/api/lighten/finedrop2/v1/devices",
           },
           {
             module: "bl-finedrop2",

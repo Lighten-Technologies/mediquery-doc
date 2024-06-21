@@ -12,7 +12,7 @@ outline: deep
 
 장치 목록을 가져옵니다.
 
-<RestfulTester  endpoint="example/bl-finedrop2/master-v1.0.0/api/lighten/finedrop2/v1/devices" />
+<RestfulTester  endpoint="example/bl-finedrop2/master-v1.0.0/api/lighten/finedrop2/v1/pairings/new" />
 
 ### Request
 

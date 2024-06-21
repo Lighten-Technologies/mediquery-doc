@@ -84,7 +84,7 @@ function makeVersionDirToDoc(moduleName, versionDir) {
         } else {
           fs.writeFileSync(
             path.join(outputBasePath, moduleName, version, "index.md"),
-            "" + versionInfo?.patchNotes ?? "",
+            str,
             "utf-8"
           );
         }
@@ -99,7 +99,7 @@ function makeVersionDirToDoc(moduleName, versionDir) {
         recursive: true,
       });
 
-      ejs.renderFile(schemaTemplate, { schemaEndPoints }, (err, str) => {
+      ejs.renderFile(schemaTemplate, { moduleName, version, schemaEndPoints }, (err, str) => {
         if (err) {
           console.error(err);
         } else {
@@ -121,7 +121,7 @@ function makeVersionDirToDoc(moduleName, versionDir) {
           recursive: true,
         });
 
-        ejs.renderFile(apiDocTemplate, { endPoint }, (err, str) => {
+        ejs.renderFile(apiDocTemplate, { moduleName, version, endPoint }, (err, str) => {
           if (err) {
             console.error(err);
           } else {
@@ -145,7 +145,7 @@ function makeVersionInfo(moduleName, versionDir) {}
 
 function makeModuleInfo(moduleName, modulePath, versionList) {
   const moduleInfo = yaml.parse(fs.readFileSync(path.join(modulePath, "moduleInfo.yml"), "utf-8"));
-  ejs.renderFile(moduleInfoTemplate, { moduleInfo, versionList }, (err, str) => {
+  ejs.renderFile(moduleInfoTemplate, { moduleName, moduleInfo, versionList }, (err, str) => {
     if (err) {
       console.error(err);
     } else {

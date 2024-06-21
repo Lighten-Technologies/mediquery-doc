@@ -1,8 +1,7 @@
 - name: master-v1.0.0/api/lighten/finedrop2/v1/devices
+  path: /api/lighten/finedrop2/v1/devices
   method: GET
   version: master-v1.0.0
-  path: /api/lighten/finedrop2/v1/devices
-  description: 장치 목록을 가져옵니다.
   samples:
     - name: 240618151023-Sample
       request: |

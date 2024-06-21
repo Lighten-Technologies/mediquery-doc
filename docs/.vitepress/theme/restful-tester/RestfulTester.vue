@@ -7,7 +7,7 @@
           {{ example.name }}
         </option>
       </select>
-      <pre>{{ requestExample }}</pre>
+      <pre>{{ endpoint }}</pre>
       <button @click="sendRequest" class="send-button">Send Request</button>
     </div>
     <div class="column">
@@ -20,7 +20,7 @@
 
 <script setup>
   import axios from "axios";
-  import { inject, ref, watch } from "vue";
+  import { ref, watch } from "vue";
 
   const props = defineProps({
     endpoint: String,
@@ -57,9 +57,10 @@
   };
 
   const saveResponse = () => {
-    const savedResponses = JSON.parse(localStorage.getItem("savedResponses") || "[]");
-    savedResponses.push({ example: selectedExample.value.name, response: response.value });
-    localStorage.setItem("savedResponses", JSON.stringify(savedResponses));
+    fs.writeFileSync("response.json", response.value);
+    // const savedResponses = JSON.parse(localStorage.getItem("savedResponses") || "[]");
+    // savedResponses.push({ example: selectedExample.value.name, response: response.value });
+    // localStorage.setItem("savedResponses", JSON.stringify(savedResponses));
     alert("Response saved successfully");
   };
 
