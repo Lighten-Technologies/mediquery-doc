@@ -115,18 +115,88 @@ function makeVersionDirToDoc(moduleName, versionDir) {
     }
 
     // documents write
-    docEndPoints.forEach((endPoint) => {
+    const docEndPointsByPath = docEndPoints.reduce((acc, curr, index, array) => {
+      if (acc[curr.path]) {
+        acc[curr.path][curr.method] = curr;
+      } else {
+        acc[curr.path] = {
+          [curr.method]: curr,
+        };
+      }
+      return acc;
+    }, {});
+    //     {
+    //   '/api/lighten/finedrop2/v1/devices': {
+    //     GET: {
+    //       method: 'GET',
+    //       path: '/api/lighten/finedrop2/v1/devices',
+    //       name: '디바이스 목록 가져오기',
+    //       description: '장치 목록을 가져옵니다.\n',
+    //       request: [Object],
+    //       response: [Object]
+    //     },
+    //     POST: {
+    //       method: 'POST',
+    //       path: '/api/lighten/finedrop2/v1/devices',
+    //       name: '디바이스 목록 입력',
+    //       description: '장치 목록을 가져옵니다.\n',
+    //       request: [Object],
+    //       response: [Object]
+    //     }
+    //   },
+    //   '/api/lighten/finedrop2/v1/devices/new': {
+    //     GET: {
+    //       method: 'GET',
+    //       path: '/api/lighten/finedrop2/v1/devices/new',
+    //       name: '신규 디바이스 목록 가져오기',
+    //       description: '장치 목록을 가져옵니다.\n',
+    //       request: [Object],
+    //       response: [Object]
+    //     }
+    //   },
+    //   '/api/lighten/finedrop2/v1/pairings': {
+    //     GET: {
+    //       method: 'GET',
+    //       path: '/api/lighten/finedrop2/v1/pairings',
+    //       name: '디바이스 목록 가져오기',
+    //       description: '장치 목록을 가져옵니다.\n',
+    //       request: [Object],
+    //       response: [Object]
+    //     },
+    //     POST: {
+    //       method: 'POST',
+    //       path: '/api/lighten/finedrop2/v1/pairings',
+    //       name: '디바이스 목록 입력',
+    //       description: '장치 목록을 가져옵니다.\n',
+    //       request: [Object],
+    //       response: [Object]
+    //     }
+    //   },
+    //   '/api/lighten/finedrop2/v1/pairings/new': {
+    //     GET: {
+    //       method: 'GET',
+    //       path: '/api/lighten/finedrop2/v1/pairings/new',
+    //       name: '신규 디바이스 목록 가져오기',
+    //       description: '장치 목록을 가져옵니다.\n',
+    //       request: [Object],
+    //       response: [Object]
+    //     }
+    //   }
+    // }
+    Object.keys(docEndPointsByPath).forEach((apiPath) => {
+      console.log(moduleName + " | " + version + " | " + apiPath);
+      const endPoint = docEndPointsByPath[apiPath];
       try {
-        fs.mkdirSync(path.join(outputBasePath, moduleName, version, endPoint?.path), {
+        fs.mkdirSync(path.join(outputBasePath, moduleName, version, apiPath), {
           recursive: true,
         });
 
-        ejs.renderFile(apiDocTemplate, { moduleName, version, endPoint }, (err, str) => {
+        ejs.renderFile(apiDocTemplate, { moduleName, version, apiPath, endPoint }, (err, str) => {
           if (err) {
             console.error(err);
           } else {
             fs.writeFileSync(
-              path.join(outputBasePath, moduleName, version, endPoint?.path, "index.md"),
+              path.join(outputBasePath, moduleName, version, apiPath, "index.md"),
               str,
               "utf-8"
             );
@@ -136,6 +206,27 @@ function makeVersionDirToDoc(moduleName, versionDir) {
         console.error(e);
       }
     });
+    // docEndPoints.forEach((endPoint) => {
+    //   try {
+    //     fs.mkdirSync(path.join(outputBasePath, moduleName, version, endPoint?.path), {
+    //       recursive: true,
+    //     });
+
+    //     ejs.renderFile(apiDocTemplate, { moduleName, version, endPoint }, (err, str) => {
+    //       if (err) {
+    //         console.error(err);
+    //       } else {
+    //         fs.writeFileSync(
+    //           path.join(outputBasePath, moduleName, version, endPoint?.path, "index.md"),
+    //           str,
+    //           "utf-8"
+    //         );
+    //       }
+    //     });
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+    // });
   } catch (e) {
     console.error(e);
   }

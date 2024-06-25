@@ -5,8 +5,17 @@ endpoints:
     description: |
       장치 목록을 가져옵니다.
     request:
-      requestHeaders: false
-      requestParameters:
+      requestDescription: 이런저런 요청을 해야합니다.
+      requestHeaders:
+        headward:
+          type: string
+          m/o: mandatory
+          description: 병동 이름을 입력하세요. 뭐 이런거 저러고 어쩌구 저쩌구
+        headtype:
+          type: string
+          m/o: mandatory
+          description: 디바이스 타입을 입력하세요. 뭐 이런거 저러고 어쩌구 저쩌구. 막 lighten/finedrop2 이런거 막 이런거
+      requestParams:
         ward:
           type: string
           m/o: mandatory
@@ -15,7 +24,7 @@ endpoints:
           type: string
           m/o: mandatory
           description: 디바이스 타입을 입력하세요. 뭐 이런거 저러고 어쩌구 저쩌구. 막 lighten/finedrop2 이런거 막 이런거
-      requestBody: false
+      requestBody: 바디에 들어갈 텍스트 입니다.
     response:
       success: |
         디바이스 목록을 성공적으로 가져왔습니다.
@@ -29,8 +38,8 @@ endpoints:
     description: |
       장치 목록을 가져옵니다.
     request:
-      requestHeaders: false
-      requestParameters:
+      requestHeaders:
+      requestParams:
         ward:
           type: string
           m/o: mandatory
@@ -39,7 +48,7 @@ endpoints:
           type: string
           m/o: mandatory
           description: 디바이스 타입을 입력하세요. 뭐 이런거 저러고 어쩌구 저쩌구. 막 lighten/finedrop2 이런거 막 이런거
-      requestBody: false
+      requestBody:
     response:
       success: |
         디바이스 목록을 성공적으로 가져왔습니다.
@@ -52,8 +61,8 @@ endpoints:
     description: |
       장치 목록을 가져옵니다.
     request:
-      requestHeaders: false
-      requestParameters:
+      requestHeaders:
+      requestParams:
         ward:
           type: string
           m/o: mandatory
@@ -62,7 +71,7 @@ endpoints:
           type: string
           m/o: mandatory
           description: 디바이스 타입을 입력하세요. 뭐 이런거 저러고 어쩌구 저쩌구. 막 lighten/finedrop2 이런거 막 이런거
-      requestBody: false
+      requestBody:
     response:
       success: |
         디바이스 목록을 성공적으로 가져왔습니다.

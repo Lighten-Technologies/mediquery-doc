@@ -1,33 +1,29 @@
-- name: master-v1.0.0/api/lighten/finedrop2/v1/devices
-  path: /api/lighten/finedrop2/v1/devices
+- name: /api/lighten/finedrop2/v1/devices
   method: GET
   version: master-v1.0.0
   samples:
     - name: 240618151023-Sample
       request: |
         {
-          "ward": "string",
-          "type": "string"
+          method: 'get',
+          url: 'http://finenurse.co.kr:80/api/finenurse/v1/device',
+          headers: { }
         }
-      response:
-        success: |
-          {
-            "devices": [
-              {
-                "id": 1,
-                "name": "Device 1"
-              },
-              {
-                "id": 2,
-                "name": "Device 2"
-              }
-            ]
-          }
-        error: |
-          {
-            "error": "Something went wrong"
-          }
-    - name: Sample 2
+      response: |
+        {
+          "devices": [
+            {
+              "id": 1,
+              "name": "Device 1"
+            },
+            {
+              "id": 2,
+              "name": "Device 2"
+            }
+          ]
+        }
+
+    - name: 240618151023-Sample
       request:
         headers:
           Content-Type: application/json

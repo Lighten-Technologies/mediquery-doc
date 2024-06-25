@@ -6,7 +6,7 @@ endpoints:
       장치 목록을 가져옵니다.
     request:
       requestHeaders: false
-      requestParameters:
+      requestParams:
         ward:
           type: string
           m/o: mandatory
@@ -29,7 +29,7 @@ endpoints:
       장치 목록을 가져옵니다.
     request:
       requestHeaders: false
-      requestParameters:
+      requestParams:
         ward:
           type: string
           m/o: mandatory
@@ -52,7 +52,7 @@ endpoints:
       장치 목록을 가져옵니다.
     request:
       requestHeaders: false
-      requestParameters:
+      requestParams:
         ward:
           type: string
           m/o: mandatory
