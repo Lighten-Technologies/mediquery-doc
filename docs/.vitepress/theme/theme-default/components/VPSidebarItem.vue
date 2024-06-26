@@ -2,6 +2,7 @@
   import type { DefaultTheme } from "vitepress/theme";
   import { computed } from "vue";
   import { useSidebarControl } from "../composables/sidebar";
+
   import VPLink from "./VPLink.vue";
 
   const props = defineProps<{
@@ -51,8 +52,10 @@
     const moduleName = props.item.module;
     const selected = selectedVersion.value;
     selected[moduleName] = version;
-    localStorage.setItem("selectedVersion", JSON.stringify(selected));
-    window.location.reload(); // 페이지를 새로고침하여 변경된 버전 반영
+    if (typeof window !== "undefined") {
+      localStorage.setItem("selectedVersion", JSON.stringify(selected));
+      window.location.reload(); // 페이지를 새로고침하여 변경된 버전 반영
+    }
   }
 </script>
 
