@@ -47,22 +47,24 @@ function makeVersionDirToDoc(moduleName, versionDir) {
   }, []);
 
   // 스키마 정리
-  const schemaFiles = fs.readdirSync(path.join(versionDir, "schema"));
-  const schemaEndPoints = schemaFiles.reduce((acc, curr, index, array) => {
-    const schemaFilePath = path.join(versionDir, "schema", curr);
-    const schemaContent = fs.readFileSync(schemaFilePath, "utf-8");
+  if (!fs.existsSync(path.join(versionDir, "schema"))) {
+    const schemaFiles = fs.readdirSync(path.join(versionDir, "schema"));
+    const schemaEndPoints = schemaFiles.reduce((acc, curr, index, array) => {
+      const schemaFilePath = path.join(versionDir, "schema", curr);
+      const schemaContent = fs.readFileSync(schemaFilePath, "utf-8");
 
-    try {
-      const schemaData = JSON.parse(schemaContent);
-      acc.push({
-        schemaName: curr,
-        schemaData,
-      });
-    } catch (e) {
-      console.error(e);
-    }
-    return acc;
-  }, []);
+      try {
+        const schemaData = JSON.parse(schemaContent);
+        acc.push({
+          schemaName: curr,
+          schemaData,
+        });
+      } catch (e) {
+        console.error(e);
+      }
+      return acc;
+    }, []);
+  }
 
   // write apiDoc
   try {
