@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "docs": "vitepress dev docs --host && nodemon --watch ./.vitepress/generateDocs",
+    "docs": "vitepress dev docs --host && nodemon --watch ./docs/.vitepress/generateDocs",
     "docs:dev": "vitepress dev docs",
-    "docs:generate": "node ./.vitepress/generateDocs.js",
+    "docs:generate": "node ./docs/.vitepress/generateDocs.js",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
