@@ -16,6 +16,7 @@ console.log(apiPath);
 export default defineConfig({
   title: "FineNurse API",
   description: "A FineNurse Documentaion",
+  base: "/finenurse-doc",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
