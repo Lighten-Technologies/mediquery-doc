@@ -47,9 +47,10 @@ function makeVersionDirToDoc(moduleName, versionDir) {
   }, []);
 
   // 스키마 정리
-  if (!fs.existsSync(path.join(versionDir, "schema"))) {
+  let schemaEndPoints = [];
+  if (fs.existsSync(path.join(versionDir, "schema"))) {
     const schemaFiles = fs.readdirSync(path.join(versionDir, "schema"));
-    const schemaEndPoints = schemaFiles.reduce((acc, curr, index, array) => {
+    schemaEndPoints = schemaFiles.reduce((acc, curr, index, array) => {
       const schemaFilePath = path.join(versionDir, "schema", curr);
       const schemaContent = fs.readFileSync(schemaFilePath, "utf-8");
 
