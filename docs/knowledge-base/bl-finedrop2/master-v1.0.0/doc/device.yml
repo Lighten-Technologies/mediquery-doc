@@ -52,6 +52,21 @@ endpoints:
     response:
       success: |
         디바이스 목록을 성공적으로 가져왔습니다.
+        ````json
+        {
+          "devices": [
+            {
+              "id": 3,
+              "name": "Device 3"
+            },
+            {
+              "id": 4,
+              "name": "Device 4"
+            }
+          ]
+        }
+
+        ````
       fail: |
         디바이스 목록을 가져오는데 실패했습니다. 뭐 이런거 저러고 어쩌구 저쩌구
 

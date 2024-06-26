@@ -12,34 +12,25 @@ const schemaTemplate = path.join(__dirname, "schemaTemplate.ejs");
 const basePath = path.join(__dirname, "../", "knowledge-base");
 const outputBasePath = path.join(__dirname, "../", "api-doc");
 
-// bl-finedrop2 tree
-// .
-// ├── master-v1.0.0
-// │   ├── doc
-// │   │   ├── device.yml
-// │   │   └── pairing.yml
-// │   ├── examples.yml
-// │   ├── patchNote.md
-// │   ├── path.yml
-// │   └── schema
-// │       ├── deviceDVO.json
-// │       └── pairingDVO.json
-// ├── master-v1.0.1
-// │   ├── doc
-// │   │   ├── device.yml
-// │   │   └── pairing.yml
-// │   ├── examples.yml
-// │   ├── patchNote.md
-// │   ├── path.yml
-// │   └── schema
-// │       ├── deviceDVO.json
-// │       └── pairingDVO.json
-// └── moduleInfo.yml
+// sidebarOutput
+const sidebarOutput = [];
+
 function makeVersionDirToDoc(moduleName, versionDir) {
+  const items = [];
+
   const version = path.basename(versionDir);
   const files = fs.readdirSync(versionDir);
 
   const versionInfo = yaml.parse(fs.readFileSync(path.join(versionDir, "info.yml"), "utf-8"));
+
+  items.push({
+    module: moduleName,
+    version: version,
+    method: [],
+    todo: false,
+    text: version,
+    link: `/api-doc/${moduleName}/${version}`,
+  });
 
   const docFiles = fs.readdirSync(path.join(versionDir, "doc"));
   const docEndPoints = docFiles.reduce((acc, curr, index, array) => {
@@ -125,66 +116,10 @@ function makeVersionDirToDoc(moduleName, versionDir) {
       }
       return acc;
     }, {});
-    //     {
-    //   '/api/lighten/finedrop2/v1/devices': {
-    //     GET: {
-    //       method: 'GET',
-    //       path: '/api/lighten/finedrop2/v1/devices',
-    //       name: '디바이스 목록 가져오기',
-    //       description: '장치 목록을 가져옵니다.\n',
-    //       request: [Object],
-    //       response: [Object]
-    //     },
-    //     POST: {
-    //       method: 'POST',
-    //       path: '/api/lighten/finedrop2/v1/devices',
-    //       name: '디바이스 목록 입력',
-    //       description: '장치 목록을 가져옵니다.\n',
-    //       request: [Object],
-    //       response: [Object]
-    //     }
-    //   },
-    //   '/api/lighten/finedrop2/v1/devices/new': {
-    //     GET: {
-    //       method: 'GET',
-    //       path: '/api/lighten/finedrop2/v1/devices/new',
-    //       name: '신규 디바이스 목록 가져오기',
-    //       description: '장치 목록을 가져옵니다.\n',
-    //       request: [Object],
-    //       response: [Object]
-    //     }
-    //   },
-    //   '/api/lighten/finedrop2/v1/pairings': {
-    //     GET: {
-    //       method: 'GET',
-    //       path: '/api/lighten/finedrop2/v1/pairings',
-    //       name: '디바이스 목록 가져오기',
-    //       description: '장치 목록을 가져옵니다.\n',
-    //       request: [Object],
-    //       response: [Object]
-    //     },
-    //     POST: {
-    //       method: 'POST',
-    //       path: '/api/lighten/finedrop2/v1/pairings',
-    //       name: '디바이스 목록 입력',
-    //       description: '장치 목록을 가져옵니다.\n',
-    //       request: [Object],
-    //       response: [Object]
-    //     }
-    //   },
-    //   '/api/lighten/finedrop2/v1/pairings/new': {
-    //     GET: {
-    //       method: 'GET',
-    //       path: '/api/lighten/finedrop2/v1/pairings/new',
-    //       name: '신규 디바이스 목록 가져오기',
-    //       description: '장치 목록을 가져옵니다.\n',
-    //       request: [Object],
-    //       response: [Object]
-    //     }
-    //   }
-    // }
+
     Object.keys(docEndPointsByPath).forEach((apiPath) => {
       console.log(moduleName + " | " + version + " | " + apiPath);
+
       const endPoint = docEndPointsByPath[apiPath];
       try {
         fs.mkdirSync(path.join(outputBasePath, moduleName, version, apiPath), {
@@ -205,31 +140,25 @@ function makeVersionDirToDoc(moduleName, versionDir) {
       } catch (e) {
         console.error(e);
       }
+      // make items
+      items.push({
+        module: moduleName,
+        version: version,
+        method: Object.keys(endPoint),
+        todo:
+          (endPoint?.GET?.todo ?? false) ||
+          (endPoint?.POST?.todo ?? false) ||
+          (endPoint?.PUT?.todo ?? false) ||
+          (endPoint?.DELETE?.todo ?? false),
+        text: apiPath,
+        link: `/api-doc/${moduleName}/${version}${apiPath}`,
+      });
     });
-    // docEndPoints.forEach((endPoint) => {
-    //   try {
-    //     fs.mkdirSync(path.join(outputBasePath, moduleName, version, endPoint?.path), {
-    //       recursive: true,
-    //     });
-
-    //     ejs.renderFile(apiDocTemplate, { moduleName, version, endPoint }, (err, str) => {
-    //       if (err) {
-    //         console.error(err);
-    //       } else {
-    //         fs.writeFileSync(
-    //           path.join(outputBasePath, moduleName, version, endPoint?.path, "index.md"),
-    //           str,
-    //           "utf-8"
-    //         );
-    //       }
-    //     });
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
-    // });
   } catch (e) {
     console.error(e);
   }
+
+  return items;
 }
 
 function makeVersionInfo(moduleName, versionDir) {}
@@ -245,8 +174,15 @@ function makeModuleInfo(moduleName, modulePath, versionList) {
       fs.writeFileSync(path.join(outputBasePath, moduleName, "index.md"), str, "utf-8");
     }
   });
+
+  return {
+    text: moduleName,
+    module: moduleName,
+    versionList: versionList,
+    items: [],
+  };
 }
-const processDirectory = (dir) => {
+const processDirectory = (dir, cb) => {
   const modules = fs.readdirSync(dir);
 
   modules.forEach((module) => {
@@ -264,17 +200,25 @@ const processDirectory = (dir) => {
       });
 
       // make moduleInfo
-      makeModuleInfo(moduleName, modulePath, versionList);
+      const moduleInfo = makeModuleInfo(moduleName, modulePath, versionList);
       versionList.forEach((versionDir) => {
         const versionPath = path.join(modulePath, versionDir);
         const stat = fs.statSync(versionPath);
         if (stat.isDirectory()) {
-          makeVersionDirToDoc(moduleName, versionPath);
+          moduleInfo.items.push(...makeVersionDirToDoc(moduleName, versionPath));
         }
       });
+      sidebarOutput.push(moduleInfo);
     }
   });
+  cb();
 };
 
 // 스크립트 실행
-processDirectory(basePath);
+processDirectory(basePath, () => {
+  fs.writeFileSync(
+    path.join(outputBasePath, "sidebar.json"),
+    JSON.stringify(sidebarOutput, null, 2),
+    "utf-8"
+  );
+});

@@ -1,6 +1,7 @@
 endpoints:
   - method: GET
     path: "/api/lighten/finedrop2/v1/pairings"
+    todo: true
     name: 디바이스 목록 가져오기
     description: |
       장치 목록을 가져옵니다.

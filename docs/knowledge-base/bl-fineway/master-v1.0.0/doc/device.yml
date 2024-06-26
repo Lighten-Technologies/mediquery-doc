@@ -1,0 +1,120 @@
+endpoints:
+  - method: POST
+    path: "/api/lighten/fineway/v1/setting"
+    name: 장비 설정값 저장
+    description: |
+      장비 설정값을 전달합니다.
+    request:
+      requestDescription: 이런저런 요청을 해야합니다.
+      requestHeaders:
+      requestParams:
+      requestBody:
+        serial:
+          type: string
+          m/o: mandatory
+          description: FineWay serial을 입력하세요.
+        name:
+          type: string
+          m/o: optional
+          description: FineWay의 이름을 입력하세요.
+        building:
+          type: string
+          m/o: optional
+          description: FineWay의 설치 건물을 입력하세요.
+        floor:
+          type: string
+          m/o: optional
+          description: FineWay의 설치 층을 입력하세요.
+        ward:
+          type: string
+          m/o: optional
+          description: FineWay의 설치 병동을 입력하세요.
+        room:
+          type: string
+          m/o: optional
+          description: FineWay의 설치 병실을 입력하세요.
+    response:
+      success: |
+        장비 설정을 성공적으로 등록했습니다.
+        ```
+        {
+          responseTime: "YYYY-MM-DD HH:mm:ss",
+          message: "장비 설정을 성공적으로 등록했습니다.",
+          data: {}
+        }
+        ```
+      fail: |
+        장비 설정을 등록하는데 실패했습니다.
+        ```
+        {
+          responseTime: "YYYY-MM-DD HH:mm:ss",
+          message: "장비 설정을 등록하는데 실패했습니다.",
+          data: {}
+        }
+        ```
+
+  - method: POST
+    path: "/api/lighten/fineway/v1/setting/disconnected"
+    name: 장비 상태 비활성화 하기
+    description: |
+      장비의 상태를 연결 끊김으로 변경합니다.
+    request:
+      requestHeaders:
+      requestParams:
+      requestBody:
+        serial:
+          type: string
+          m/o: mandatory
+          description: FineWay serial을 입력하세요.
+    response:
+      success: |
+        장비 상태를 성공적으로 변경했습니다.
+        ```
+        {
+          responseTime: "YYYY-MM-DD HH:mm:ss",
+          message: "장비 상태를 성공적으로 변경했습니다.",
+          data: {}
+        }
+        ```
+      fail: |
+        장비 상태을 변경하는데 실패했습니다.
+        ```
+        {
+          responseTime: "YYYY-MM-DD HH:mm:ss",
+          message: "장비 상태을 변경하는데 실패했습니다.",
+          data: {}
+        }
+        ```
+
+  - method: POST
+    path: "/api/lighten/fineway/v1/setting/equipment"
+    name: FineWay 목록 입력
+    description: |
+      새로운 FineWay 장비를 등록합니다.
+    request:
+      requestHeaders:
+      requestParams:
+      requestBody:
+        data:
+          type: array
+          m/o: mandatory
+          description: 장비 데이터 배열을 입력하세요. 각 인덱스는 길이 7의 배열로 이루어져 있고, serial, name, building, floor, ward, room, space의 순서입니다.
+    response:
+      success: |
+        장비 목록을 성공적으로 등록했습니다.
+        ```
+        {
+          responseTime: "YYYY-MM-DD HH:mm:ss",
+          message: "장비 목록을 성공적으로 변경했습니다.",
+          data: {}
+        }
+        ```
+      fail: |
+        장비 목록을 등록하는데 실패했습니다.
+        ```
+        {
+          responseTime: "YYYY-MM-DD HH:mm:ss",
+          message: "장비 목록을 등록하는데 실패했습니다.",
+          data: {}
+        }
+        ```
