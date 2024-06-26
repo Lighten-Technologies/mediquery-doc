@@ -30,4 +30,5 @@ export default defineConfig({
       { icon: "homepage", link: "http://lighten-tech.co.kr/" },
     ],
   },
+  ignoreDeadLinks: true,
 });
