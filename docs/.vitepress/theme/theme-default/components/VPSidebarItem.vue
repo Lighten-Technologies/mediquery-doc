@@ -44,7 +44,11 @@
   }
 
   const selectedVersion = computed(() => {
-    return JSON.parse(localStorage.getItem("selectedVersion") || "{}");
+    if (typeof window !== "undefined") {
+      return JSON.parse(localStorage.getItem("selectedVersion") || "{}");
+    } else {
+      return {};
+    }
   });
 
   function onVersionChange(e) {
