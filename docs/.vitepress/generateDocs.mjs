@@ -1,7 +1,12 @@
-const fs = require("fs");
-const path = require("path");
-const yaml = require("yaml");
-const ejs = require("ejs");
+import ejs from "ejs";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import yaml from "yaml";
+
+// 현재 모듈의 URL을 파일 경로로 변환
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // 템플릿 파일 읽기
 const moduleInfoTemplate = path.join(__dirname, "moduleInfo.ejs");
@@ -55,7 +60,7 @@ function makeVersionDirToDoc(moduleName, versionDir) {
       const schemaContent = fs.readFileSync(schemaFilePath, "utf-8");
 
       try {
-        const schemaData = JSON.parse(schemaContent);
+        const schemaData = schemaContent;
         acc.push({
           schemaName: curr,
           schemaData,
@@ -185,6 +190,22 @@ function makeModuleInfo(moduleName, modulePath, versionList) {
     items: [],
   };
 }
+
+const removeAllDir = (dir) => {
+  if (fs.existsSync(dir)) {
+    const files = fs.readdirSync(dir);
+    files.forEach((file) => {
+      const curPath = path.join(dir, file);
+      if (fs.lstatSync(curPath).isDirectory()) {
+        removeAllDir(curPath);
+      } else {
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(dir);
+  }
+};
+
 const processDirectory = (dir, cb) => {
   const modules = fs.readdirSync(dir);
 
@@ -218,6 +239,7 @@ const processDirectory = (dir, cb) => {
 };
 
 // 스크립트 실행
+removeAllDir(outputBasePath);
 processDirectory(basePath, () => {
   fs.writeFileSync(
     path.join(outputBasePath, "sidebar.json"),

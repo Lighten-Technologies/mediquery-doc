@@ -1,0 +1,65 @@
+endpoints:
+  - method: GET
+    todo: false
+    path: "/api/mediquery/v1/related"
+    name: 약물/질병-질병/약물 관계 API
+    description: |
+      특정 약물/질병과 관련된 약물/질병 목록을 가져옵니다.
+    request:
+      requestDescription: |
+        약물/질병 코드를 입력하세요.
+      requestHeaders:
+      requestParams:
+        docType:
+          type: string
+          m/o: mandatory
+          description: 문서 타입을 입력하세요. [drug, disease]
+        docCode:
+          type: string
+          m/o: mandatory
+          description: 문서 코드를 입력하세요.
+    response:
+      success: |
+        특정 약물/질병과 관련된 약물/질병 목록을 성공적으로 가져왔습니다.
+
+        `doc_related`와, `doc_model_related`은 내림차순으로 정렬되어 있습니다.
+        ````json
+        {
+          "responseTime": "2024-06-27T00:00:00",
+          "path": "/api/mediquery/v1/related",
+          "data": {
+            "doc_type": "disease",
+            "doc_code": "111110",
+            "doc_name": "Pancreatic cancer",
+            "doc_related": [
+              {
+                "doc_type": "disease",
+                "doc_code": "111110",
+                "doc_name": "OSTEOARTHRITIS SUSCEPTIBILITY 2; OS2",
+                "relation_score": 10
+              },
+              {
+                "doc_type": "disease",
+                "doc_code": "111110",
+                "doc_name": "OSTEOARTHRITIS SUSCEPTIBILITY 3; OS2",
+                "relation_score": 9
+              }
+            ],
+              "doc_model_related": [
+              {
+                "doc_type": "disease",
+                "doc_code": "111111",
+                "doc_name": "CEREBRAL ARTERIOPATHY, AUTOS,,,",
+                "relation_score": 2.5334761142730713
+              },
+              {
+                "doc_type": "disease",
+                "doc_code": "111112",
+                "doc_name": "HEMANGIOMAS, CAVERNOUS, OF...",
+                "relation_score": 2.463108777999878
+              }
+            ]
+          }
+        }
+        ````
+      fail: 특정 약물/질병과 관련된 약물/질병 목록을 가져오는데 실패했습니다.

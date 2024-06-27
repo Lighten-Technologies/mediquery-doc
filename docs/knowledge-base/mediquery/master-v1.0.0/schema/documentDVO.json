@@ -1,0 +1,45 @@
+// 약물일 경우
+{
+  "doc_type": "drug",
+  "doc_code": "N02BE01",
+  "doc_name": "Ibuprofen",
+  "doc_href": "https://go.drugbank.com/drugs/DB00316",
+  "doc_detail": {
+    "summary": "Acetaminophen is an analg..",
+    "background": "Acetaminophen (paracetamol), a..",
+    "brandName": "Acephen, Acetadryl",
+    "genericName": "Acetaminophen",
+    "drugBankAccessionNumber": "DB01050",
+    "type": "Small Molecule",
+    "groups": "Approved",
+    "structure": "https://example.com/image.jpg",
+    "weight": {
+      "Average": 206.2808,
+      "Monoisotopic": 206.13067982
+    },
+    "chemicalFomula": "C13H18O2",
+    "synonyms": "Ibuprofen, Ibuprofene, Ibuprofeno, Ibuprofenum, Ibuprophen"
+  }
+}
+// 질병일 경우
+{
+  "doc_type": "disease",
+  "doc_code": "111110",
+  "doc_name": "Pancreatic cancer",
+  "doc_href": "https://go.drugbank.com/drugs/DB00316",
+  "doc_detail": {
+    "omim": "140600",
+    "title": "OSTEOARTHRITIS SUSCEPTIBILITY 2; OS2",
+    "alternative_titles": [
+      "OSTEOARTHRITIS OF DISTAL INTERPHALANGEAL JOINTS",
+      "OADIP",
+      "DIPOA",
+      "HAND OSTEOARTHRITIS; HOA"
+    ],
+    "hpo_annotations": [
+      "HP:0002758",
+      "HP:0012313",
+      "HP:0000006"
+    ]
+  }
+}

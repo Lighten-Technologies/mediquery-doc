@@ -1,29 +1,20 @@
 import fs from "fs";
 import { defineConfig } from "vitepress";
 
-// Collect endpoints by running the collectEndpoints.js script
-// execSync("node " + __dirname + "/collectEndpoints.js", { stdio: "inherit" });
+await import("./generateDocs.mjs");
 
-const apiPath = fs.readFileSync("docs/path.yaml", "utf-8");
 const sideBar = JSON.parse(fs.readFileSync("docs/api-doc/sidebar.json", "utf-8"));
-
-console.log(apiPath);
-
-// const collectedEndpointsPath = path.resolve(__dirname, "../collectedEndpoints.yml");
-// const collectedEndpoints = yaml.parse(fs.readFileSync(collectedEndpointsPath, "utf-8"));
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "FineNurse API",
-  description: "A FineNurse Documentaion",
-  base: "/finenurse-doc",
+  title: "Mediquery API",
+  description: "A Mediquery Documentaion",
+  base: "/mediquery-doc",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
       provider: "local",
     },
-    // nav: [{ text: "Home", link: "/" }],
-
     sidebar: sideBar,
 
     socialLinks: [

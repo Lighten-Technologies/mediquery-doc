@@ -1,0 +1,40 @@
+// 약물 --> 질병
+{
+  "source_doc_type": "drug",
+  "source_doc_code": "N02BE01",
+  "source_doc_name": "Ibuprofen",
+  "target_doc_type": "disease",
+  "target_doc_code": "111111",
+  "target_doc_name": "CEREBRAL ARTERIOPATHY",
+  "relation_score": 2.5334761142730713
+}
+// 약물 -> 약물
+{
+  "source_doc_type": "drug",
+  "source_doc_code": "N02BE01",
+  "source_doc_name": "Ibuprofen",
+  "target_doc_type": "drug",
+  "target_doc_code": "N02BE02",
+  "target_doc_name": "Acetaminophen",
+  "relation_score": 33.23423412
+}
+// 질병 -> 약물
+{
+  "source_doc_type": "disease",
+  "source_doc_code": "111112",
+  "source_doc_name": "HEMANGIOMAS, CAVERNOUS, OF FACE AND SUPRAUMBILICAL MIDLINE RAPHE",
+  "target_doc_type": "drug",
+  "target_doc_code": "N02BE03",
+  "target_doc_name": "Aspirin",
+  "relation_score": 1.23456789
+}
+// 질병 -> 질병
+{
+  "source_doc_type": "disease",
+  "source_doc_code": "111113",
+  "source_doc_name": "AORTIC ARCH INTERRUPTION, FACIAL PALSY, AND RETINAL COLOBOMA",
+  "target_doc_type": "disease",
+  "target_doc_code": "111114",
+  "target_doc_name": "ANTIPHOSPHOLIPID SYNDROME, FAMILIAL",
+  "relation_score": 0.87654321
+}

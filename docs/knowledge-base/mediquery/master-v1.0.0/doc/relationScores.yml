@@ -1,0 +1,53 @@
+endpoints:
+  - method: GET
+    todo: false
+    path: "/api/mediquery/v1/relationScore"
+    name: 약물/질병 연관 점수 조회
+    description: |
+      특정 약물/질병과 관련된 약물/질병 목록과 연관도 점수를 가져옵니다.
+    request:
+      requestDescription: |
+        약물/질병 코드를 입력하세요.
+      requestHeaders:
+      requestParams:
+        docType:
+          type: string
+          m/o: mandatory
+          description: 문서 타입을 입력하세요. [drug, disease]
+        docCode:
+          type: string
+          m/o: mandatory
+          description: 문서 코드를 입력하세요.
+    response:
+      success: |
+        특정 약물/질병과 관련된 약물/질병 목록과 연관도 점수를 성공적으로 가져왔습니다.
+
+        `doc_related`와, `doc_model_related`은 내림차순으로 정렬되어 있습니다.
+        ````json
+        {
+          "responseTime": "2024-06-27T00:00:00",
+          "path": "/api/mediquery/v1/relationScore",
+          "data": [
+            {
+              "source_doc_type": "drug",
+              "source_doc_code": "N02BE01",
+              "source_doc_name": "Ibuprofen",
+              "target_doc_type": "disease",
+              "target_doc_code": "111111",
+              "target_doc_name": "CEREBRAL ARTERIOPATHY",
+              "relation_score": 2.5334761142730713
+            },
+            {
+              "source_doc_type": "drug",
+              "source_doc_code": "N02BE01",
+              "source_doc_name": "Ibuprofen",
+              "target_doc_type": "drug",
+              "target_doc_code": "N02BE02",
+              "target_doc_name": "Acetaminophen",
+              "relation_score": 33.23423412
+            },
+            ...
+          ]
+        }
+        ````
+      fail: 특정 약물/질병과 관련된 약물/질병 목록을 가져오는데 실패했습니다.

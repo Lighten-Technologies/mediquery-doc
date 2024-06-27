@@ -1,0 +1,52 @@
+// docRelationDVO 현재 적용중인 약물/질병들
+{
+  "doc_type": "drug",
+  "doc_code": "N02BE01",
+  "doc_name": "Ibuprofen",
+  "doc_related": [  // relation_score로 정렬 하기위해 우선순위 둠, 해당 기능 필요없을시 리스트 순으로 정렬
+    {
+      "doc_type": "disease",
+      "doc_code": "111110",
+      "doc_name": "OSTEOARTHRITIS SUSCEPTIBILITY 2; OS2",
+      "relation_score": 10
+    },
+    {
+      "doc_type": "disease",
+      "doc_code": "111110",
+      "doc_name": "HYPERTHERMIA, CUTANEOUS, WITH HEADACHES AND NAUSEA",
+      "relation_score": 9
+    },
+    {
+      "doc_type": "disease",
+      "doc_code": "111110",
+      "doc_name": "INSENSITIVITY TO PAIN WITH HYPERPLASTIC MYELINOPATHY",
+      "relation_score": 9
+    }
+  ],
+  "doc_model_related": [ // 데이터 모델이 찾은 질병 목록
+    {
+      "doc_type": "disease",
+      "doc_code": "111111",
+      "doc_name": "CEREBRAL ARTERIOPATHY, AUTOSOMAL DOMINANT, WITH SUBCORTICAL INFARCTS AND LEUKOENCEPHALOPATHY, TYPE 1; CADASIL1",
+      "relation_score": 2.5334761142730713
+    },
+    {
+      "doc_type": "disease",
+      "doc_code": "111112",
+      "doc_name": "HEMANGIOMAS, CAVERNOUS, OF FACE AND SUPRAUMBILICAL MIDLINE RAPHE",
+      "relation_score": 2.463108777999878
+    },
+    {
+      "doc_type": "disease",
+      "doc_code": "111113",
+      "doc_name": "AORTIC ARCH INTERRUPTION, FACIAL PALSY, AND RETINAL COLOBOMA",
+      "relation_score": 2.410353422164917
+    },
+    {
+      "doc_type": "disease",
+      "doc_code": "111114",
+      "doc_name": "ANTIPHOSPHOLIPID SYNDROME, FAMILIAL",
+      "relation_score": 1.4935579299926758
+    }
+  ]
+}
