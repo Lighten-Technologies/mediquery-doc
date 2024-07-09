@@ -29,17 +29,20 @@ endpoints:
           "path": "/api/mediquery/v1/related",
           "data": {
             "doc_type": "disease",
+            "doc_id": "DB0022",
             "doc_code": "111110",
             "doc_name": "Pancreatic cancer",
             "doc_related": [
               {
                 "doc_type": "disease",
+                "doc_id": "DB002122",
                 "doc_code": "111110",
                 "doc_name": "OSTEOARTHRITIS SUSCEPTIBILITY 2; OS2",
                 "relation_score": 10
               },
               {
                 "doc_type": "disease",
+                "doc_id": "DB002522",
                 "doc_code": "111110",
                 "doc_name": "OSTEOARTHRITIS SUSCEPTIBILITY 3; OS2",
                 "relation_score": 9
@@ -48,12 +51,14 @@ endpoints:
               "doc_model_related": [
               {
                 "doc_type": "disease",
+                "doc_id": "DB002232",
                 "doc_code": "111111",
                 "doc_name": "CEREBRAL ARTERIOPATHY, AUTOS,,,",
                 "relation_score": 2.5334761142730713
               },
               {
                 "doc_type": "disease",
+                "doc_id": "DB004",
                 "doc_code": "111112",
                 "doc_name": "HEMANGIOMAS, CAVERNOUS, OF...",
                 "relation_score": 2.463108777999878
