@@ -2,5 +2,6 @@ moduleName: bl-finedrop2
 versionName: master-v1.0.0
 patchNotes: |
   version: 1.0.0
-    date: 2024-06-27
-    description: Initial version
+    date: 2024-07-10
+
+    description: doc code로 검색한다

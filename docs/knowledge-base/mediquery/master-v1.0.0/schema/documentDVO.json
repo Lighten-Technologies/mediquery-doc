@@ -1,7 +1,6 @@
 // 약물일 경우
 {
   "doc_type": "drug",
-  "doc_id": "DB0022",
   "doc_code": "N02BE01",
   "doc_name": "Ibuprofen",
   "doc_href": "https://go.drugbank.com/drugs/DB00316",
@@ -25,7 +24,6 @@
 // 질병일 경우
 {
   "doc_type": "disease",
-  "doc_id": "DB0044",
   "doc_code": "111110",
   "doc_name": "Pancreatic cancer",
   "doc_href": "https://go.drugbank.com/drugs/DB00316",

@@ -8,10 +8,6 @@ endpoints:
       requestDescription:
       requestHeaders:
       requestParams:
-        docType:
-          type: string
-          m/o: mandatory
-          description: 문서 타입을 입력하세요. [drug, disease]
         docCode:
           type: string
           m/o: mandatory
@@ -26,7 +22,6 @@ endpoints:
           "path": "/api/mediquery/v1/document",
           "data": {
             "doc_type": "disease",
-            "doc_id": "DB001331",
             "doc_code": "111110",
             "doc_name": "Pancreatic cancer",
             "doc_href": "https://go.drugbank.com/drugs/DB00316",
@@ -76,7 +71,6 @@ endpoints:
           "data":[
             {
               "doc_type": "drug",
-              "doc_id": "DB0331",
               "doc_code": "N02BE01",
               "doc_name": "Ibuprofen",
               "doc_href": "https://go.drugbank.com/drugs/DB00316",
@@ -86,7 +80,6 @@ endpoints:
             },
             {
               "doc_type": "disease",
-              "doc_id": "DB03444",
               "doc_code": "111110",
               "doc_name": "Pancreatic cancer",
               "doc_href": "https://go.drugbank.com/drugs/DB00316",
