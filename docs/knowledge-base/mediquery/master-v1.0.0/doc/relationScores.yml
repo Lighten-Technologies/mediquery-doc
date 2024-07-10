@@ -10,10 +10,14 @@ endpoints:
         약물/질병 코드를 입력하세요.
       requestHeaders:
       requestParams:
-        docId:
+        docType:
           type: string
           m/o: mandatory
-          description: 문서 ID를 입력하세요.
+          description: 문서 타입을 입력하세요. [drug, disease]
+        docCode:
+          type: string
+          m/o: mandatory
+          description: 문서 코드를 입력하세요.
     response:
       success: |
         특정 약물/질병과 관련된 약물/질병 목록과 연관도 점수를 성공적으로 가져왔습니다.
