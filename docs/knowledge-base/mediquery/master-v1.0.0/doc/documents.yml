@@ -59,7 +59,7 @@ endpoints:
         search:
           type: string
           m/o: mandatory
-          description: 검색어를 입력하세요.
+          description: 검색어를 입력하세요. 3글자 미만은 조회 불가능.
       requestBody:
     response:
       success: |
